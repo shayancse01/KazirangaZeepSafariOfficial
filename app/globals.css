@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-safari: #4cd964;
+  --color-safari-deep: #0e3b16;
+  --color-safari-ink: #0b2e12;
+  --color-sun: #fff200;
+  --color-sun-soft: #fff9a6;
+  --color-sun-muted: #efe800;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0, 0, 1) both;
+  --animate-spin-slow: spin 14s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  --background: #4cd964;
+  --foreground: #fff200;
+  --shadow-border:
+    0px 0px 0px 1px oklch(0 0 0 / 0.08),
+    0px 1px 2px -1px oklch(0 0 0 / 0.12),
+    0px 4px 12px 0px oklch(0 0 0 / 0.08);
+  --shadow-border-hover:
+    0px 0px 0px 1px oklch(0 0 0 / 0.12),
+    0px 2px 4px -1px oklch(0 0 0 / 0.14),
+    0px 8px 20px 0px oklch(0 0 0 / 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(oklch(0 0 0 / 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  text-wrap: pretty;
+}
+
+p, h1, h2, h3, h4, h5, h6, li {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: #fff200;
+  color: #0b2e12;
+}
+
+/* interruptible, specific-property transitions only */
+a, button, summary {
+  transition-property: color, background-color, border-color, box-shadow, scale, opacity, transform, translate, rotate;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:focus-visible {
+  outline: 2px solid #fff200;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
